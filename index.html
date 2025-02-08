@@ -22,6 +22,7 @@
             type="search"
             class="form__search-bar"
             placeholder="Enter search query"
+            title="Enter the products name, product type, manufacturer or unique ID."
           />
           <button type="submit" class="form__search-button">Search</button>
         </form>
@@ -32,7 +33,10 @@
       <span class="medicine-management-container">
         <form class="medicine-management__form">
           <!-- Product Name -->
-          <label for="product-name" class="form__product-name-label"
+          <label
+            for="product-name"
+            class="form__product-name-label"
+            title="Enter the name of the product has displayed on the package."
             >Product Name: *</label
           >
           <input
@@ -45,7 +49,12 @@
           />
 
           <!-- Product Type -->
-          <label for="product-type">Product Type: *</label>
+          <label
+            for="product-type"
+            class="form__product-type-label"
+            title="Select how the medicine is consumed."
+            >Product Type: *</label
+          >
           <select
             name="product-type"
             id="product-type"
@@ -98,21 +107,27 @@
           </select>
 
           <!-- Product ID, randomly generated -->
-          <label for="product-id" class="form__product-id-label"
-            >Generated Product ID: *
+          <label
+            for="product-id"
+            class="form__product-id-label"
+            title="The product will receive a unique ID, unless the product has been added earlier."
+            >Product ID: *
           </label>
           <input
             type="text"
             class="form__product-id-input"
             minlength="1"
             required
-            placeholder=""
+            placeholder="Is generated or fetched based on product name, type, manufacturer and expiry date."
             value=""
             disabled
           />
 
           <!-- Manufacturer -->
-          <label for="manufacturer" class="form__manufacturer-label"
+          <label
+            for="manufacturer"
+            class="form__manufacturer-label"
+            title="If the products manufacturer is not listed, contact IT to have it added."
             >Manufacturer: *</label
           >
           <select
@@ -134,13 +149,21 @@
           </select>
 
           <!-- Expiration Date -->
-          <label for="expiration-date" class="form__expiration-date-label"
+          <label
+            for="expiration-date"
+            class="form__expiration-date-label"
+            title="Enter the products expiry date. This can be found on the product itself."
             >Expiration Date: *</label
           >
           <input type="date" class="form__expiration-date-input" required />
 
           <!-- Quantity -->
-          <label for="quantity" class="form__quantity-label">Quantity: *</label>
+          <label
+            for="quantity"
+            class="form__quantity-label"
+            title="Enter the amount of specified product."
+            >Quantity: *</label
+          >
           <input
             type="number"
             class="form__quantity-input"

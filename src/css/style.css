@@ -17,7 +17,7 @@ main {
   width: 100%;
   display: flex;
   align-items: center;
-  padding: var(--spacing-large);
+  padding: var(--spacing-medium) var(--spacing-large);
   background-color: var(--color-background-dark);
   color: var(--color-text-light);
   gap: var(--spacing-large);
