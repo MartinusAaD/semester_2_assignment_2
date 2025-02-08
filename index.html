@@ -9,9 +9,14 @@
     <title>Pharmacy Inventory Management System</title>
   </head>
   <body>
+    <!-- Navbar -->
     <header class="header">
       <nav class="navbar">
-        <h1 class="navbar__header">Pharmacy Inventory</h1>
+        <div class="navbar__header-container">
+          <h1 class="navbar__header">Pharmacy Inventory</h1>
+          <img src="./src/assets/icons/plus.svg" alt="Image of a plus icon" />
+        </div>
+
         <form class="form__search-container">
           <input
             type="search"
@@ -23,41 +28,135 @@
       </nav>
     </header>
     <main class="main">
-      <span class="medecine-management-container">
-        <form class="medecine-management__form">
-          <label for="product-name">Product Name:</label>
-          <input type="text" />
+      <!-- Medicine adder/editor container -->
+      <span class="medicine-management-container">
+        <form class="medicine-management__form">
+          <!-- Product Name -->
+          <label for="product-name" class="form__product-name-label"
+            >Product Name: *</label
+          >
+          <input
+            type="text"
+            class="form__product-name-input"
+            placeholder="Enter name of medicine"
+            minlength="1"
+            maxlength="50"
+            required
+          />
 
-          <label for="product-type">Product Type</label>
-          <select name="" id="">
-            <option value="capsule">Capsule</option>
-            <option value="inhaler">Inhaler</option>
-            <option value="liquid">Liquid</option>
-            <option value="needle">Needle</option>
-            <option value="patch">Patch</option>
-            <option value="pill">Pill</option>
+          <!-- Product Type -->
+          <label for="product-type">Product Type: *</label>
+          <select
+            name="product-type"
+            id="product-type"
+            class="form__product-type"
+            required
+          >
+            <option value="">Select a Type</option>
+            <option
+              value="capsule"
+              name="product-type"
+              class="form__product-type-option"
+            >
+              Capsule
+            </option>
+            <option
+              value="inhaler"
+              name="product-type"
+              class="form__product-type-option"
+            >
+              Inhaler
+            </option>
+            <option
+              value="liquid"
+              name="product-type"
+              class="form__product-type-option"
+            >
+              Liquid
+            </option>
+            <option
+              value="needle"
+              name="product-type"
+              class="form__product-type-option"
+            >
+              Needle
+            </option>
+            <option
+              value="patch"
+              name="product-type"
+              class="form__product-type-option"
+            >
+              Patch
+            </option>
+            <option
+              value="pill"
+              name="product-type"
+              class="form__product-type-option"
+            >
+              Pill
+            </option>
           </select>
 
-          <label for="product-id">Generate Product ID: </label>
-          <input type="text" />
+          <!-- Product ID, randomly generated -->
+          <label for="product-id" class="form__product-id-label"
+            >Generated Product ID: *
+          </label>
+          <input
+            type="text"
+            class="form__product-id-input"
+            minlength="1"
+            required
+            placeholder=""
+            value=""
+            disabled
+          />
 
-          <label for="manufacturer">Manufacturer:</label>
-          <select name="" id="">
-            <option value="invalid">Select Manufacturer</option>
-            <option value="karo-pharma-as">Karo Pharma AS</option>
+          <!-- Manufacturer -->
+          <label for="manufacturer" class="form__manufacturer-label"
+            >Manufacturer: *</label
+          >
+          <select
+            name="manufacturer"
+            id="form__manufacturer"
+            class="form__manufacturer"
+            required
+          >
+            <option value="" class="form__manufacturer-option">
+              Select a Manufacturer
+            </option>
+            <option
+              value="karo-pharma-as"
+              name="manufacturer"
+              class="form__manufacturer-option"
+            >
+              Karo Pharma AS
+            </option>
           </select>
 
-          <label for="expiration-date">Expiration Date:</label>
-          <input type="date" />
+          <!-- Expiration Date -->
+          <label for="expiration-date" class="form__expiration-date-label"
+            >Expiration Date: *</label
+          >
+          <input type="date" class="form__expiration-date-input" required />
 
-          <label for="quantity">Quantity: </label>
-          <input type="number" />
+          <!-- Quantity -->
+          <label for="quantity" class="form__quantity-label">Quantity: *</label>
+          <input
+            type="number"
+            class="form__quantity-input"
+            placeholder="0"
+            min="1"
+            required
+          />
 
-          <button type="submit">Submit</button>
+          <button type="submit" class="medicine-management__form-button">
+            Submit
+          </button>
         </form>
       </span>
 
-      <span class="medecine-container"> </span>
+      <!-- Products list container -->
+      <span class="medicine-container"> </span>
     </main>
     <script type="module" src="./src/js/app.js"></script>
   </body>

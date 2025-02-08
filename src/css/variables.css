@@ -1,8 +1,8 @@
 :root {
   /* COLORS */
   --color-background-light: #ffffff;
-  --color-background-medium: #848484;
-  --color-background-dark: #242424;
+  --color-background-medium: #f1f1f1;
+  --color-background-dark: #151e5a;
   --color-border: #6c6c6c;
   --color-button-hover: #8d8d8d;
   --color-text-dark: #000000;
