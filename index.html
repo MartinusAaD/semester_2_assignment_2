@@ -45,7 +45,6 @@
             placeholder="Enter name of medicine"
             minlength="1"
             maxlength="50"
-            required
           />
 
           <!-- Product Type -->
@@ -59,7 +58,6 @@
             name="product-type"
             id="product-type"
             class="form__product-type"
-            required
           >
             <option value="">Select a Type</option>
             <option
@@ -117,7 +115,6 @@
                 name="capsule-shell"
                 id="capsule-shell"
                 class="product-type__capsule-shell-select"
-                required
               >
                 <option value="">Select a Type</option>
                 <option
@@ -149,7 +146,6 @@
                 name="inhaler-type"
                 id="inhaler-type"
                 class="product-type__inhaler-type-select"
-                required
               >
                 <option value="">Select a Type</option>
                 <option
@@ -181,7 +177,6 @@
                 name="liquid-type"
                 id="liquid-type"
                 class="product-type__liquid-type-select"
-                required
               >
                 <option value="">Select a Type</option>
                 <option
@@ -227,7 +222,6 @@
                 name="needle-bevel"
                 id="needle-bevel"
                 class="product-type__needle-bevel"
-                required
               >
                 <option value="">Select a Bevel</option>
                 <option
@@ -266,7 +260,6 @@
                 name="patch-type"
                 id="patch-type"
                 class="product-type__patch-type"
-                required
               >
                 <option value="">Select a Type</option>
                 <option
@@ -319,7 +312,6 @@
                 name="pill-shape"
                 id="pill-shape"
                 class="product-type__pill-shape"
-                required
               >
                 <option value="">Select a Shape</option>
                 <option
@@ -353,7 +345,6 @@
                 class="product-type_pill-quantity-input"
                 placeholder="0"
                 min="1"
-                required
               />
             </fieldset>
           </div>
@@ -369,7 +360,6 @@
             type="text"
             class="form__product-id-input"
             minlength="1"
-            required
             placeholder="Is generated or fetched based on the inserted data."
             value=""
             disabled
@@ -386,7 +376,6 @@
             name="manufacturer"
             id="form__manufacturer"
             class="form__manufacturer"
-            required
           >
             <option value="" class="form__manufacturer-option">
               Select a Manufacturer
@@ -407,7 +396,7 @@
             title="Enter the products expiry date. This can be found on the product itself."
             >Expiration Date: *</label
           >
-          <input type="date" class="form__expiration-date-input" required />
+          <input type="date" class="form__expiration-date-input" />
 
           <!-- Quantity -->
           <label
@@ -421,13 +410,18 @@
             class="form__quantity-input"
             placeholder="0"
             min="1"
-            required
           />
           <div>
-            <button type="submit" class="medicine-management__form-button">
+            <button
+              type="submit"
+              class="medicine-management__form-button form-button-submit"
+            >
               Submit
             </button>
-            <button type="button" class="medicine-management__form-button">
+            <button
+              type="button"
+              class="medicine-management__form-button form-button-cancel"
+            >
               Cancel
             </button>
           </div>

@@ -107,7 +107,7 @@ select {
 .product-type__category {
   /* display: none; */
   padding: var(--spacing-small);
-  display: flex;
+  display: none;
   flex-direction: column;
   border-radius: var(--border-radius-small);
   margin-left: var(--spacing-medium);

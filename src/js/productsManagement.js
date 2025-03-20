@@ -1,3 +1,5 @@
+import Product from "./product";
+
 class ProductsManagement {
   static viewProducts = () => {
     const productsList = JSON.parse(localStorage.getItem("productsList")) || [];
@@ -7,7 +9,7 @@ class ProductsManagement {
 
     productsList.forEach((product) => {
       const productContainer = document.createElement("divs");
-      const productName = document.createElement("h3");
+      const productName = document.createElement("h2");
       const productList = document.createElement("ul");
       const productType = document.createElement("li");
       const productId = document.createElement("li");
@@ -35,23 +37,48 @@ class ProductsManagement {
       productQuantity.classList.add("product-quantity");
 
       productName.textContent = product.name;
-      productType.textContent = product.type;
-      productId.textContent = product.id;
-      productManufacturer.textContent = product.manufacturer;
-      productExpiryDate.textContent = product.expiryDate;
-      productQuantity.textContent = product.quantity;
+      productType.innerHTML = `<strong>Product Type:</strong> ${capitalizeFirstLetter(
+        product.type
+      )}`;
+      productId.innerHTML = `<strong>Product Id:</strong> ${capitalizeFirstLetter(
+        product.id
+      )}`;
+      productManufacturer.innerHTML = `<strong>Manufacturer:</strong> ${capitalizeFirstLetter(
+        product.manufacturer.toString().replace(/-/g, " ")
+      )}`;
+      productExpiryDate.innerHTML = `<strong>Expiry Date:</strong> ${product.expiryDate}`;
+      productQuantity.innerHTML = `<strong>Quantity:</strong> ${product.quantity}`;
+
+      // Capitalize first letter
+      function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+      }
     });
   };
-  static addProduct = () => {
-    // Query Selectors
-    const productName = document.querySelector(".form__product-name-input");
-    const productType = document.querySelector(".form__product-type"); //Select -> Option
-    const productId = document.querySelector(".form__product-id-input");
-    const productManufacturer = document.querySelector(".form__manufacturer"); //Select -> Option
-    const productExpiryDate = document.querySelector(
-      ".form__expiration-date-input"
+  static addProduct = (
+    productName,
+    productType,
+    productId,
+    productManufacturer,
+    productExpiryDate,
+    productQuantity
+  ) => {
+    const productsList = JSON.parse(localStorage.getItem("productsList")) || [];
+
+    console.log(productQuantity);
+
+    const newProduct = new Product(
+      productName,
+      productType,
+      productId,
+      productManufacturer,
+      productExpiryDate,
+      productQuantity
     );
-    const productQuantity = document.querySelector(".form__quantity-input");
+
+    productsList.push(newProduct);
+    localStorage.setItem("productsList", JSON.stringify(productsList));
+    this.viewProducts();
 
     // Store Values
   };
