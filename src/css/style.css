@@ -1,7 +1,13 @@
+@font-face {
+  font-family: Rubik-Regular;
+  src: url("../assets/fonts/Rubik-Regular.ttf");
+}
+
 body {
   width: 100%;
   min-height: 100vh;
   background-color: var(--color-background-medium);
+  font-family: Rubik-Regular;
 }
 
 header {
@@ -96,4 +102,17 @@ select {
 .medicine-container {
   width: 100%;
   height: 100%;
+}
+
+.product-type__category {
+  /* display: none; */
+  padding: var(--spacing-small);
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--border-radius-small);
+  margin-left: var(--spacing-medium);
+}
+
+.product-type__category legend {
+  padding: 0.2rem;
 }
