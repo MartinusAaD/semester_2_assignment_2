@@ -17,8 +17,13 @@ class ProductsManagement {
       const productExpiryDate = document.createElement("li");
       const productQuantity = document.createElement("li");
 
+      const toolsContainer = document.createElement("div");
+      const editButton = document.createElement("button");
+      const deleteButton = document.createElement("button");
+
       productsContainer.append(productContainer);
-      productContainer.append(productName, productList);
+      productContainer.append(productName, toolsContainer, productList);
+      toolsContainer.append(editButton, deleteButton);
       productList.append(
         productType,
         productId,
@@ -36,6 +41,13 @@ class ProductsManagement {
       productExpiryDate.classList.add("product-expiry-date");
       productQuantity.classList.add("product-quantity");
 
+      toolsContainer.classList.add("product-tools-container");
+      editButton.classList.add("product__edit-button", "product__tools-button");
+      deleteButton.classList.add(
+        "product__delete-button",
+        "product__tools-button"
+      );
+
       productName.textContent = product.name;
       productType.innerHTML = `<strong>Product Type:</strong> ${capitalizeFirstLetter(
         product.type
@@ -48,6 +60,14 @@ class ProductsManagement {
       )}`;
       productExpiryDate.innerHTML = `<strong>Expiry Date:</strong> ${product.expiryDate}`;
       productQuantity.innerHTML = `<strong>Quantity:</strong> ${product.quantity}`;
+
+      editButton.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`;
+      deleteButton.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+
+      deleteButton.addEventListener("click", () => {
+        this.removeProduct(product.id);
+        product.id = "";
+      });
 
       // Capitalize first letter
       function capitalizeFirstLetter(string) {
@@ -81,6 +101,15 @@ class ProductsManagement {
     this.viewProducts();
 
     // Store Values
+  };
+
+  static removeProduct = (productId) => {
+    const productsList = JSON.parse(localStorage.getItem("productsList")) || [];
+    const filteredProducts = productsList.filter(
+      (product) => product.id !== productId
+    );
+    localStorage.setItem("productsList", JSON.stringify(filteredProducts));
+    this.viewProducts();
   };
 }
 

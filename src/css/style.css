@@ -86,8 +86,13 @@ select {
   border-radius: var(--border-radius-small);
 }
 
+.medecine-management__form-buttons-container {
+  display: flex;
+  gap: var(--spacing-small);
+}
+
 .medicine-management__form-button {
-  width: 50%;
+  flex-grow: 1;
   height: 32px;
   font-weight: bold;
   align-self: center;
@@ -97,6 +102,20 @@ select {
   color: var(--color-text-light);
   border-radius: var(--border-radius-small);
   border: none;
+}
+
+.product-tools-container {
+  display: flex;
+  gap: var(--spacing-x-small);
+}
+
+.product__tools-button {
+  background-color: var(--color-background-dark);
+  color: var(--color-text-light);
+  font-size: 1.2rem;
+  padding: var(--spacing-small);
+  border: none;
+  border-radius: var(--border-radius-small);
 }
 
 .products-container {
