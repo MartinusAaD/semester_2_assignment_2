@@ -92,7 +92,7 @@ select {
 }
 
 .medicine-management__form-button {
-  flex-grow: 1;
+  width: 50%;
   height: 32px;
   font-weight: bold;
   align-self: center;

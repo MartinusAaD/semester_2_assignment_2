@@ -1,3 +1,4 @@
+import appState from "./appState";
 import Product from "./product";
 
 class ProductsManagement {
@@ -64,6 +65,13 @@ class ProductsManagement {
       editButton.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`;
       deleteButton.innerHTML = `<i class="fa-solid fa-trash"></i>`;
 
+      editButton.addEventListener("click", () => {
+        this.populateEditForm(product.id);
+
+        const confirmEditButton = document.querySelector(".form-button-submit");
+        confirmEditButton.textContent = "Confirm Edit";
+      });
+
       deleteButton.addEventListener("click", () => {
         this.removeProduct(product.id);
         product.id = "";
@@ -85,8 +93,6 @@ class ProductsManagement {
   ) => {
     const productsList = JSON.parse(localStorage.getItem("productsList")) || [];
 
-    console.log(productQuantity);
-
     const newProduct = new Product(
       productName,
       productType,
@@ -99,14 +105,65 @@ class ProductsManagement {
     productsList.push(newProduct);
     localStorage.setItem("productsList", JSON.stringify(productsList));
     this.viewProducts();
-
-    // Store Values
   };
 
-  static removeProduct = (productId) => {
+  static populateEditForm = (productUniqueId) => {
+    const productsList = JSON.parse(localStorage.getItem("productsList")) || [];
+
+    const productName = document.querySelector(".form__product-name-input");
+    const productType = document.querySelector(".form__product-type"); //Select -> Option
+    const productId = document.querySelector(".form__product-id-input");
+    const productManufacturer = document.querySelector(".form__manufacturer"); //Select -> Option
+    const productExpiryDate = document.querySelector(
+      ".form__expiration-date-input"
+    );
+    const productQuantity = document.querySelector(".form__quantity-input");
+
+    const productToEdit = productsList.find(
+      (product) => product.id === productUniqueId
+    );
+
+    productName.value = productToEdit.name;
+    productType.value = productToEdit.type;
+    productId.value = productToEdit.id;
+    productManufacturer.value = productToEdit.manufacturer;
+    productExpiryDate.value = productToEdit.expiryDate;
+    productQuantity.value = productToEdit.quantity;
+
+    appState.editState = productToEdit.id;
+  };
+
+  static updateProduct = (
+    productName,
+    productType,
+    productId,
+    productManufacturer,
+    productExpiryDate,
+    productQuantity
+  ) => {
+    const productsList = JSON.parse(localStorage.getItem("productsList")) || [];
+    const productToUpdate = productsList.find(
+      (product) => product.id === productId
+    );
+
+    if (productToUpdate) {
+      productToUpdate.name = productName;
+      productToUpdate.type = productType;
+      productToUpdate.productId = productId;
+      productToUpdate.manufacturer = productManufacturer;
+      productToUpdate.expiryDate = productExpiryDate;
+      productToUpdate.quantity = productQuantity;
+
+      localStorage.setItem("productsList", JSON.stringify(productsList));
+      this.viewProducts();
+      appState.editState = null;
+    }
+  };
+
+  static removeProduct = (productUniqueId) => {
     const productsList = JSON.parse(localStorage.getItem("productsList")) || [];
     const filteredProducts = productsList.filter(
-      (product) => product.id !== productId
+      (product) => product.id !== productUniqueId
     );
     localStorage.setItem("productsList", JSON.stringify(filteredProducts));
     this.viewProducts();
