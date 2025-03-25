@@ -35,7 +35,7 @@
     </header>
     <main class="main">
       <!-- Medicine adder/editor container -->
-      <span class="medicine-management-container">
+      <span class="medicine-management__container">
         <form class="medicine-management__form">
           <!-- Product Name -->
           <label
@@ -416,7 +416,7 @@
             placeholder="0"
             min="1"
           />
-          <div class="medecine-management__form-buttons-container">
+          <div class="medicine-management__form-buttons-container">
             <button
               type="submit"
               class="medicine-management__form-button form-button-submit"
@@ -436,6 +436,24 @@
       <!-- Products list container -->
       <span class="products-container"></span>
     </main>
+
+    <!-- Add product button -->
+    <button class="product-button-add">
+      <i class="fa-solid fa-plus fa-lg"></i>
+    </button>
+
+    <!-- Delete Modal -->
+    <span class="delete-modal">
+      <div class="delete-modal__container">
+        <p class="delete-modal__message">
+          Are you sure you want to delete product?
+        </p>
+        <div class="delete-modal__buttons">
+          <button class="delete-modal__button-confirm">Confirm</button>
+          <button class="delete-modal__button-cancel">Cancel</button>
+        </div>
+      </div>
+    </span>
     <script type="module" src="./src/js/app.js"></script>
   </body>
 </html>

@@ -1,4 +1,5 @@
 import appState from "./appState.js";
+import currentProductId from "./currentProductId.js";
 import Product from "./product.js";
 import ProductsManagement from "./productsManagement.js";
 
@@ -6,9 +7,15 @@ document.addEventListener("DOMContentLoaded", () => {
   ProductsManagement.viewProducts();
 });
 
+const addProductButton = document.querySelector(".product-button-add");
+const formContainer = document.querySelector(".medicine-management__container");
 const productForm = document.querySelector(".medicine-management__form");
 const confirmEditButton = document.querySelector(".form-button-submit");
 const cancelButton = document.querySelector(".form-button-cancel");
+
+addProductButton.addEventListener("click", () => {
+  formContainer.classList.add("medicine-management__container--active");
+});
 
 productForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -52,6 +59,27 @@ productForm.addEventListener("submit", (e) => {
 
 cancelButton.addEventListener("click", () => {
   productForm.reset();
+  formContainer.classList.remove("medicine-management__container--active");
   appState.editState = null;
   confirmEditButton.textContent = "Submit";
+});
+
+// Delete Modal
+
+const deleteModal = document.querySelector(".delete-modal");
+
+const deleteModalButtonConfirm = document.querySelector(
+  ".delete-modal__button-confirm"
+);
+const deleteModalButtonCancel = document.querySelector(
+  ".delete-modal__button-cancel"
+);
+
+deleteModalButtonConfirm.addEventListener("click", () => {
+  ProductsManagement.removeProduct(currentProductId.productUniqueId);
+  deleteModal.classList.remove("delete-modal--active");
+});
+
+deleteModalButtonCancel.addEventListener("click", () => {
+  deleteModal.classList.remove("delete-modal--active");
 });

@@ -1,4 +1,5 @@
 import appState from "./appState";
+import currentProductId from "./currentProductId";
 import Product from "./product";
 
 class ProductsManagement {
@@ -73,8 +74,16 @@ class ProductsManagement {
       });
 
       deleteButton.addEventListener("click", () => {
-        this.removeProduct(product.id);
-        product.id = "";
+        const deleteModal = document.querySelector(".delete-modal");
+
+        const deleteModalMessage = document.querySelector(
+          ".delete-modal__message"
+        );
+
+        deleteModalMessage.textContent = `Are you sure you want to delete "${product.name}"?`;
+        deleteModal.classList.add("delete-modal--active");
+
+        currentProductId.productUniqueId = product.id;
       });
 
       // Capitalize first letter
@@ -118,6 +127,11 @@ class ProductsManagement {
       ".form__expiration-date-input"
     );
     const productQuantity = document.querySelector(".form__quantity-input");
+
+    const formContainer = document.querySelector(
+      ".medicine-management__container"
+    );
+    formContainer.classList.add("medicine-management__container--active");
 
     const productToEdit = productsList.find(
       (product) => product.id === productUniqueId
@@ -167,6 +181,7 @@ class ProductsManagement {
     );
     localStorage.setItem("productsList", JSON.stringify(filteredProducts));
     this.viewProducts();
+    productUniqueId = "";
   };
 }
 
