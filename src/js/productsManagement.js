@@ -1,5 +1,6 @@
 import appState from "./appState";
 import currentProductId from "./currentProductId";
+import { productTypeChange } from "./formManager";
 import Product from "./product";
 
 class ProductsManagement {
@@ -68,6 +69,7 @@ class ProductsManagement {
 
       editButton.addEventListener("click", () => {
         this.populateEditForm(product.id);
+        productTypeChange();
 
         const confirmEditButton = document.querySelector(".form-button-submit");
         confirmEditButton.textContent = "Confirm Edit";

@@ -11,3 +11,7 @@ button {
 button:hover {
   opacity: 0.9;
 }
+
+li {
+  list-style-type: none;
+}

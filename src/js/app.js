@@ -2,9 +2,12 @@ import appState from "./appState.js";
 import currentProductId from "./currentProductId.js";
 import Product from "./product.js";
 import ProductsManagement from "./productsManagement.js";
+import { productTypeReset, productTypeChange } from "./formManager";
 
 document.addEventListener("DOMContentLoaded", () => {
   ProductsManagement.viewProducts();
+  productTypeReset;
+  productTypeChange;
 });
 
 const addProductButton = document.querySelector(".product-button-add");
@@ -51,10 +54,9 @@ productForm.addEventListener("submit", (e) => {
       productQuantity.value
     );
   }
-
   productForm.reset();
-
   confirmEditButton.textContent = "Submit";
+  productTypeReset();
 });
 
 cancelButton.addEventListener("click", () => {
@@ -62,6 +64,7 @@ cancelButton.addEventListener("click", () => {
   formContainer.classList.remove("medicine-management__container--active");
   appState.editState = null;
   confirmEditButton.textContent = "Submit";
+  productTypeReset();
 });
 
 // Delete Modal
