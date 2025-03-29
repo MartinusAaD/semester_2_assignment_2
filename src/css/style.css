@@ -172,6 +172,10 @@ select {
   padding: var(--spacing-x-small) var(--spacing-medium);
 }
 
+.product-list-inner {
+  margin-left: var(--spacing-medium);
+}
+
 .product-button-add {
   position: fixed;
   bottom: 20px;

@@ -33,7 +33,26 @@ productForm.addEventListener("submit", (e) => {
   );
   const productQuantity = document.querySelector(".form__quantity-input");
 
-  //
+  // Type specific
+
+  const capsuleShell = document.querySelector(
+    ".product-type__capsule-shell-select"
+  );
+  const capsuleMaterial = document.querySelector(
+    ".product-type__capsule-material-select"
+  );
+  const inhalerType = document.querySelector(
+    ".product-type__inhaler-type-select"
+  );
+  const liquidType = document.querySelector(
+    ".product-type__liquid-type-select"
+  );
+  const needleBevel = document.querySelector(".product-type__needle-bevel");
+  const patchType = document.querySelector(".product-type__patch-type");
+  const pillShape = document.querySelector(".product-type__pill-shape");
+  const pillQuantity = document.querySelector(
+    ".product-type_pill-quantity-input"
+  );
 
   if (!appState.editState) {
     ProductsManagement.addProduct(
@@ -42,7 +61,16 @@ productForm.addEventListener("submit", (e) => {
       productId.value,
       productManufacturer.value,
       productExpiryDate.value,
-      productQuantity.value
+      productQuantity.value,
+
+      capsuleShell.value,
+      capsuleMaterial.value,
+      inhalerType.value,
+      liquidType.value,
+      needleBevel.value,
+      patchType.value,
+      pillShape.value,
+      pillQuantity.value
     );
   } else {
     ProductsManagement.updateProduct(
@@ -51,7 +79,16 @@ productForm.addEventListener("submit", (e) => {
       productId.value,
       productManufacturer.value,
       productExpiryDate.value,
-      productQuantity.value
+      productQuantity.value,
+
+      capsuleShell.value,
+      capsuleMaterial.value,
+      inhalerType.value,
+      liquidType.value,
+      needleBevel.value,
+      patchType.value,
+      pillShape.value,
+      pillQuantity.value
     );
   }
   productForm.reset();

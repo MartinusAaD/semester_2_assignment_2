@@ -1,59 +1,111 @@
 import Product from "./product.js";
 
 // Capsule
-class ProductTypeCapsule extends Product {
-  constructor(name, type, manufacturer, expiryDate, quantity, shell, material) {
-    super(name, type, manufacturer, expiryDate, quantity);
-    this.shell = shell; // Hard or Soft
-    this.material = material; // Gelatin or Vegetable
+export class ProductTypeCapsule extends Product {
+  constructor(
+    name,
+    productType,
+    id,
+    manufacturer,
+    expiryDate,
+    quantity,
+    capsuleShell,
+    capsuleMaterial
+  ) {
+    super(name, productType, id, manufacturer, expiryDate, quantity);
+    this.capsuleShell = capsuleShell; // Hard or Soft
+    this.capsuleMaterial = capsuleMaterial; // Gelatin or Vegetable
   }
 }
 
 // Inhaler
-class ProductTypeInhaler extends Product {
-  constructor(name, type, manufacturer, expiryDate, quantity, inhalerType) {
-    super(name, type, manufacturer, expiryDate, quantity);
+export class ProductTypeInhaler extends Product {
+  constructor(
+    name,
+    productType,
+    id,
+    manufacturer,
+    expiryDate,
+    quantity,
+    inhalerType
+  ) {
+    super(name, productType, id, manufacturer, expiryDate, quantity);
     this.inhalerType = inhalerType; // Puffer or Powder
   }
 }
 
 // Liquid
-class ProductTypeLiquid extends Product {
-  constructor(name, type, manufacturer, expiryDate, quantity, liquidType) {
-    super(name, type, manufacturer, expiryDate, quantity);
+export class ProductTypeLiquid extends Product {
+  constructor(
+    name,
+    productType,
+    id,
+    manufacturer,
+    expiryDate,
+    quantity,
+    liquidType
+  ) {
+    super(name, productType, id, manufacturer, expiryDate, quantity);
     this.liquidType = liquidType; // elixir, solution, suspension or syrup
   }
 }
 
 // Needle
-class ProductTypeNeedle extends Product {
-  constructor(name, type, manufacturer, expiryDate, quantity, bevel) {
-    super(name, type, manufacturer, expiryDate, quantity);
-    this.bevel = bevel; // Standard, short or true short bevel
+export class ProductTypeNeedle extends Product {
+  constructor(
+    name,
+    productType,
+    id,
+    manufacturer,
+    expiryDate,
+    quantity,
+    needleBevel
+  ) {
+    super(name, productType, id, manufacturer, expiryDate, quantity);
+    this.needleBevel = needleBevel; // Standard, short or true short needleBevel
   }
 }
 
 // Patch
-class ProductTypePatch extends Product {
-  constructor(name, type, manufacturer, expiryDate, quantity, patchType) {
-    super(name, type, manufacturer, expiryDate, quantity);
+export class ProductTypePatch extends Product {
+  constructor(
+    name,
+    productType,
+    id,
+    manufacturer,
+    expiryDate,
+    quantity,
+    patchType
+  ) {
+    super(name, productType, id, manufacturer, expiryDate, quantity);
     this.patchType = patchType; // Single-layer drug-in-adhesive, Two-layer drug-in-adhesive, Reservoir, Matrix or Vapor patch
   }
 }
 
 // Pill
-class ProductTypePill extends Product {
+export class ProductTypePill extends Product {
   constructor(
     name,
-    type,
+    productType,
+    id,
     manufacturer,
     expiryDate,
     quantity,
     pillShape,
     pillQuantity
   ) {
-    super(name, type, manufacturer, expiryDate, quantity);
+    super(name, productType, id, manufacturer, expiryDate, quantity);
     this.pillShape = pillShape; // Round, Oval or Capsule-shaped
     this.pillQuantity = pillQuantity;
   }
 }
+
+export default {
+  ProductTypeCapsule,
+  ProductTypeInhaler,
+  ProductTypeLiquid,
+  ProductTypeNeedle,
+  ProductTypeNeedle,
+  ProductTypePatch,
+  ProductTypePill,
+};

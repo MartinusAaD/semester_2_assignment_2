@@ -2,6 +2,14 @@ import appState from "./appState";
 import currentProductId from "./currentProductId";
 import { productTypeChange } from "./formManager";
 import Product from "./product";
+import {
+  ProductTypeCapsule,
+  ProductTypeInhaler,
+  ProductTypeLiquid,
+  ProductTypeNeedle,
+  ProductTypePatch,
+  ProductTypePill,
+} from "./productTypes";
 
 class ProductsManagement {
   static viewProducts = () => {
@@ -11,9 +19,10 @@ class ProductsManagement {
     productsContainer.innerHTML = "";
 
     productsList.forEach((product) => {
-      const productContainer = document.createElement("divs");
+      const productContainer = document.createElement("div");
       const productName = document.createElement("h2");
       const productList = document.createElement("ul");
+      const productListInner = document.createElement("ul");
       const productType = document.createElement("li");
       const productId = document.createElement("li");
       const productManufacturer = document.createElement("li");
@@ -27,17 +36,12 @@ class ProductsManagement {
       productsContainer.append(productContainer);
       productContainer.append(productName, toolsContainer, productList);
       toolsContainer.append(editButton, deleteButton);
-      productList.append(
-        productType,
-        productId,
-        productManufacturer,
-        productExpiryDate,
-        productQuantity
-      );
+      productList.append(productType, productListInner);
 
       productContainer.classList.add("product-container");
       productName.classList.add("product-name");
       productList.classList.add("product-list");
+      productListInner.classList.add("product-list-inner");
       productType.classList.add("product-type");
       productId.classList.add("product-id");
       productManufacturer.classList.add("product-manufacturer");
@@ -53,7 +57,7 @@ class ProductsManagement {
 
       productName.textContent = product.name;
       productType.innerHTML = `<strong>Product Type:</strong> ${capitalizeFirstLetter(
-        product.type
+        product.productType
       )}`;
       productId.innerHTML = `<strong>Product Id:</strong> ${capitalizeFirstLetter(
         product.id
@@ -66,6 +70,87 @@ class ProductsManagement {
 
       editButton.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`;
       deleteButton.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+
+      switch (product.productType) {
+        case "capsule":
+          const capsuleShell = document.createElement("li");
+          const capsuleMaterial = document.createElement("li");
+
+          productListInner.append(capsuleShell, capsuleMaterial);
+
+          capsuleShell.innerHTML = `<strong>Capsule Shell:</strong> ${capitalizeFirstLetter(
+            product.capsuleShell
+          )}`;
+          capsuleMaterial.innerHTML = `<strong>Capsule Material:</strong> ${capitalizeFirstLetter(
+            product.capsuleMaterial
+          )}`;
+          break;
+
+        case "inhaler":
+          const inhalerType = document.createElement("li");
+
+          productListInner.append(inhalerType);
+
+          inhalerType.innerHTML = `<strong>Inhaler Type:</strong> ${capitalizeFirstLetter(
+            product.inhalerType
+          )}`;
+          break;
+
+        case "liquid":
+          const liquidType = document.createElement("li");
+
+          productListInner.append(liquidType);
+
+          liquidType.innerHTML = `<strong>Liquid Type:</strong> ${capitalizeFirstLetter(
+            product.liquidType
+          )}`;
+          break;
+
+        case "needle":
+          const needleBevel = document.createElement("li");
+
+          productListInner.append(needleBevel);
+
+          needleBevel.innerHTML = `<strong>Needle Bevel:</strong> ${capitalizeFirstLetter(
+            product.needleBevel
+          )}`;
+          break;
+
+        case "patch":
+          const patchType = document.createElement("li");
+
+          productListInner.append(patchType);
+
+          patchType.innerHTML = `<strong>Patch Type:</strong> ${capitalizeFirstLetter(
+            product.patchType
+          )}`;
+          break;
+
+        case "pill":
+          const pillShape = document.createElement("li");
+          const pillQuantity = document.createElement("li");
+
+          productListInner.append(pillShape, pillQuantity);
+
+          pillShape.innerHTML = `<strong>Pill Shape:</strong> ${capitalizeFirstLetter(
+            product.pillShape
+          )}`;
+          pillQuantity.innerHTML = `<strong>Pill Quantity:</strong> ${capitalizeFirstLetter(
+            product.pillQuantity
+          )}`;
+
+          break;
+
+        default:
+          break;
+      }
+
+      productList.append(
+        productId,
+        productManufacturer,
+        productExpiryDate,
+        productQuantity
+      );
 
       editButton.addEventListener("click", () => {
         this.populateEditForm(product.id);
@@ -100,19 +185,99 @@ class ProductsManagement {
     productId,
     productManufacturer,
     productExpiryDate,
-    productQuantity
+    productQuantity,
+    // Type Specific
+    capsuleShell,
+    capsuleMaterial,
+    inhalerType,
+    liquidType,
+    needleBevel,
+    patchType,
+    pillShape,
+    pillQuantity
   ) => {
     const productsList = JSON.parse(localStorage.getItem("productsList")) || [];
 
-    const newProduct = new Product(
-      productName,
-      productType,
-      productId,
-      productManufacturer,
-      productExpiryDate,
-      productQuantity
-    );
+    let newProduct;
+    switch (productType) {
+      case "capsule":
+        newProduct = new ProductTypeCapsule(
+          productName,
+          productType,
+          productId,
+          productManufacturer,
+          productExpiryDate,
+          productQuantity,
+          capsuleShell,
+          capsuleMaterial
+        );
+        break;
 
+      case "inhaler":
+        newProduct = new ProductTypeInhaler(
+          productName,
+          productType,
+          productId,
+          productManufacturer,
+          productExpiryDate,
+          productQuantity,
+          inhalerType
+        );
+        break;
+
+      case "liquid":
+        newProduct = new ProductTypeLiquid(
+          productName,
+          productType,
+          productId,
+          productManufacturer,
+          productExpiryDate,
+          productQuantity,
+          liquidType
+        );
+        break;
+
+      case "needle":
+        newProduct = new ProductTypeNeedle(
+          productName,
+          productType,
+          productId,
+          productManufacturer,
+          productExpiryDate,
+          productQuantity,
+          needleBevel
+        );
+        break;
+
+      case "patch":
+        newProduct = new ProductTypePatch(
+          productName,
+          productType,
+          productId,
+          productManufacturer,
+          productExpiryDate,
+          productQuantity,
+          patchType
+        );
+        break;
+
+      case "pill":
+        newProduct = new ProductTypePill(
+          productName,
+          productType,
+          productId,
+          productManufacturer,
+          productExpiryDate,
+          productQuantity,
+          pillShape,
+          pillQuantity
+        );
+        break;
+
+      default:
+        break;
+    }
+    console.log(newProduct);
     productsList.push(newProduct);
     localStorage.setItem("productsList", JSON.stringify(productsList));
     this.viewProducts();
@@ -130,6 +295,26 @@ class ProductsManagement {
     );
     const productQuantity = document.querySelector(".form__quantity-input");
 
+    // Type specific
+    const capsuleShell = document.querySelector(
+      ".product-type__capsule-shell-select"
+    );
+    const capsuleMaterial = document.querySelector(
+      ".product-type__capsule-material-select"
+    );
+    const inhalerType = document.querySelector(
+      ".product-type__inhaler-type-select"
+    );
+    const liquidType = document.querySelector(
+      ".product-type__liquid-type-select"
+    );
+    const needleBevel = document.querySelector(".product-type__needle-Bevel");
+    const patchType = document.querySelector(".product-type__patch-type");
+    const pillShape = document.querySelector(".product-type__pill-shape");
+    const pillQuantity = document.querySelector(
+      ".product-type_pill-quantity-input"
+    );
+
     const formContainer = document.querySelector(
       ".medicine-management__container"
     );
@@ -140,11 +325,42 @@ class ProductsManagement {
     );
 
     productName.value = productToEdit.name;
-    productType.value = productToEdit.type;
+    productType.value = productToEdit.productType;
     productId.value = productToEdit.id;
     productManufacturer.value = productToEdit.manufacturer;
     productExpiryDate.value = productToEdit.expiryDate;
     productQuantity.value = productToEdit.quantity;
+
+    switch (productType.value) {
+      case "capsule":
+        capsuleShell.value = productToEdit.capsuleShell;
+        capsuleMaterial.value = productToEdit.capsuleMaterial;
+        break;
+
+      case "inhaler":
+        inhalerType.value = productToEdit.inhalerType;
+        break;
+
+      case "liquid":
+        liquidType.value = productToEdit.liquidType;
+        break;
+
+      case "needle":
+        needleBevel.value = productToEdit.needleBevel;
+        break;
+
+      case "patch":
+        patchType.value = productToEdit.patchType;
+        break;
+
+      case "pill":
+        pillShape.value = productToEdit.pillShape;
+        pillQuantity.value = productToEdit.pillQuantity;
+        break;
+
+      default:
+        break;
+    }
 
     appState.editState = productToEdit.id;
   };
@@ -155,7 +371,16 @@ class ProductsManagement {
     productId,
     productManufacturer,
     productExpiryDate,
-    productQuantity
+    productQuantity,
+    // Type Specific
+    capsuleShell,
+    capsuleMaterial,
+    inhalerType,
+    liquidType,
+    needleBevel,
+    patchType,
+    pillShape,
+    pillQuantity
   ) => {
     const productsList = JSON.parse(localStorage.getItem("productsList")) || [];
     const productToUpdate = productsList.find(
@@ -164,11 +389,83 @@ class ProductsManagement {
 
     if (productToUpdate) {
       productToUpdate.name = productName;
-      productToUpdate.type = productType;
-      productToUpdate.productId = productId;
+      productToUpdate.productType = productType;
+      productToUpdate.id = productId;
       productToUpdate.manufacturer = productManufacturer;
       productToUpdate.expiryDate = productExpiryDate;
       productToUpdate.quantity = productQuantity;
+
+      switch (productType) {
+        case "capsule":
+          productToUpdate.capsuleShell = capsuleShell;
+          productToUpdate.capsuleMaterial = capsuleMaterial;
+          delete productToUpdate.inhalerType;
+          delete productToUpdate.liquidType;
+          delete productToUpdate.needleBevel;
+          delete productToUpdate.patchType;
+          delete productToUpdate.pillShape;
+          delete productToUpdate.pillQuantity;
+          break;
+
+        case "inhaler":
+          delete productToUpdate.capsuleShell;
+          delete productToUpdate.capsuleMaterial;
+          productToUpdate.inhalerType = inhalerType;
+          delete productToUpdate.liquidType;
+          delete productToUpdate.needleBevel;
+          delete productToUpdate.patchType;
+          delete productToUpdate.pillShape;
+          delete productToUpdate.pillQuantity;
+
+          break;
+
+        case "liquid":
+          delete productToUpdate.capsuleShell;
+          delete productToUpdate.capsuleMaterial;
+          delete productToUpdate.inhalerType;
+          productToUpdate.liquidType = liquidType;
+          delete productToUpdate.needleBevel;
+          delete productToUpdate.patchType;
+          delete productToUpdate.pillShape;
+          delete productToUpdate.pillQuantity;
+          break;
+
+        case "needle":
+          delete productToUpdate.capsuleShell;
+          delete productToUpdate.capsuleMaterial;
+          delete productToUpdate.inhalerType;
+          delete productToUpdate.liquidType;
+          productToUpdate.needleBevel = needleBevel;
+          delete productToUpdate.patchType;
+          delete productToUpdate.pillShape;
+          delete productToUpdate.pillQuantity;
+          break;
+
+        case "patch":
+          delete productToUpdate.capsuleShell;
+          delete productToUpdate.capsuleMaterial;
+          delete productToUpdate.inhalerType;
+          delete productToUpdate.liquidType;
+          delete productToUpdate.needleBevel;
+          productToUpdate.patchType = patchType;
+          delete productToUpdate.pillShape;
+          delete productToUpdate.pillQuantity;
+          break;
+
+        case "pill":
+          delete productToUpdate.capsuleShell;
+          delete productToUpdate.capsuleMaterial;
+          delete productToUpdate.inhalerType;
+          delete productToUpdate.liquidType;
+          delete productToUpdate.needleBevel;
+          delete productToUpdate.patchType;
+          productToUpdate.pillShape = pillShape;
+          productToUpdate.pillQuantity = pillQuantity;
+          break;
+
+        default:
+          break;
+      }
 
       localStorage.setItem("productsList", JSON.stringify(productsList));
       this.viewProducts();

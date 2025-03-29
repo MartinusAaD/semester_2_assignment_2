@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 class Product {
-  constructor(name, type, id, manufacturer, expiryDate, quantity) {
+  constructor(name, productType, id, manufacturer, expiryDate, quantity) {
     this.name = name;
-    this.type = type;
+    this.productType = productType;
     this.id = uuidv4();
     this.manufacturer = manufacturer;
     this.expiryDate = expiryDate;
