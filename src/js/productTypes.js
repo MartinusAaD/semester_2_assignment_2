@@ -105,7 +105,6 @@ export default {
   ProductTypeInhaler,
   ProductTypeLiquid,
   ProductTypeNeedle,
-  ProductTypeNeedle,
   ProductTypePatch,
   ProductTypePill,
 };

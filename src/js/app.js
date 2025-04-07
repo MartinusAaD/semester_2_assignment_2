@@ -56,7 +56,7 @@ productForm.addEventListener("submit", (e) => {
 
   if (!appState.editState) {
     ProductsManagement.addProduct(
-      productName.value,
+      productName.value.trim(),
       productType.value,
       productId.value,
       productManufacturer.value,
@@ -74,7 +74,7 @@ productForm.addEventListener("submit", (e) => {
     );
   } else {
     ProductsManagement.updateProduct(
-      productName.value,
+      productName.value.trim(),
       productType.value,
       productId.value,
       productManufacturer.value,

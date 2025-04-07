@@ -395,70 +395,39 @@ class ProductsManagement {
       productToUpdate.expiryDate = productExpiryDate;
       productToUpdate.quantity = productQuantity;
 
+      // Clear unnecessary properties and re-apply
+      delete productToUpdate.capsuleShell;
+      delete productToUpdate.capsuleMaterial;
+      delete productToUpdate.inhalerType;
+      delete productToUpdate.liquidType;
+      delete productToUpdate.needleBevel;
+      delete productToUpdate.patchType;
+      delete productToUpdate.pillShape;
+      delete productToUpdate.pillQuantity;
+
       switch (productType) {
         case "capsule":
           productToUpdate.capsuleShell = capsuleShell;
           productToUpdate.capsuleMaterial = capsuleMaterial;
-          delete productToUpdate.inhalerType;
-          delete productToUpdate.liquidType;
-          delete productToUpdate.needleBevel;
-          delete productToUpdate.patchType;
-          delete productToUpdate.pillShape;
-          delete productToUpdate.pillQuantity;
           break;
 
         case "inhaler":
-          delete productToUpdate.capsuleShell;
-          delete productToUpdate.capsuleMaterial;
           productToUpdate.inhalerType = inhalerType;
-          delete productToUpdate.liquidType;
-          delete productToUpdate.needleBevel;
-          delete productToUpdate.patchType;
-          delete productToUpdate.pillShape;
-          delete productToUpdate.pillQuantity;
-
           break;
 
         case "liquid":
-          delete productToUpdate.capsuleShell;
-          delete productToUpdate.capsuleMaterial;
-          delete productToUpdate.inhalerType;
           productToUpdate.liquidType = liquidType;
-          delete productToUpdate.needleBevel;
-          delete productToUpdate.patchType;
-          delete productToUpdate.pillShape;
-          delete productToUpdate.pillQuantity;
           break;
 
         case "needle":
-          delete productToUpdate.capsuleShell;
-          delete productToUpdate.capsuleMaterial;
-          delete productToUpdate.inhalerType;
-          delete productToUpdate.liquidType;
           productToUpdate.needleBevel = needleBevel;
-          delete productToUpdate.patchType;
-          delete productToUpdate.pillShape;
-          delete productToUpdate.pillQuantity;
           break;
 
         case "patch":
-          delete productToUpdate.capsuleShell;
-          delete productToUpdate.capsuleMaterial;
-          delete productToUpdate.inhalerType;
-          delete productToUpdate.liquidType;
-          delete productToUpdate.needleBevel;
           productToUpdate.patchType = patchType;
-          delete productToUpdate.pillShape;
-          delete productToUpdate.pillQuantity;
           break;
 
         case "pill":
-          delete productToUpdate.capsuleShell;
-          delete productToUpdate.capsuleMaterial;
-          delete productToUpdate.inhalerType;
-          delete productToUpdate.liquidType;
-          delete productToUpdate.needleBevel;
-          delete productToUpdate.patchType;
           productToUpdate.pillShape = pillShape;
           productToUpdate.pillQuantity = pillQuantity;
           break;
