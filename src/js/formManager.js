@@ -11,9 +11,7 @@ export const productTypeChange = () => {
   productTypesExtra.forEach((category) => {
     if (category.className.includes(productType.value)) {
       category.style.display = "flex";
-      console.log(category);
     } else {
-      console.log(category);
       category.style.display = "none";
     }
   });

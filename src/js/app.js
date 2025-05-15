@@ -3,6 +3,7 @@ import currentProductId from "./currentProductId.js";
 import Product from "./product.js";
 import ProductsManagement from "./productsManagement.js";
 import { productTypeReset, productTypeChange } from "./formManager";
+import Validation from "./validation.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   ProductsManagement.viewProducts();
@@ -13,11 +14,13 @@ document.addEventListener("DOMContentLoaded", () => {
 const addProductButton = document.querySelector(".product-button-add");
 const formContainer = document.querySelector(".medicine-management__container");
 const productForm = document.querySelector(".medicine-management__form");
+const validationMessage = document.querySelector(".form__validation-message");
 const confirmEditButton = document.querySelector(".form-button-submit");
 const cancelButton = document.querySelector(".form-button-cancel");
 
 addProductButton.addEventListener("click", () => {
   formContainer.classList.add("medicine-management__container--active");
+  validationMessage.style.display = "none";
 });
 
 productForm.addEventListener("submit", (e) => {
@@ -53,6 +56,10 @@ productForm.addEventListener("submit", (e) => {
   const pillQuantity = document.querySelector(
     ".product-type_pill-quantity-input"
   );
+
+  if (!Validation.validateForm(productType.value, validationMessage)) {
+    return;
+  }
 
   if (!appState.editState) {
     ProductsManagement.addProduct(
@@ -101,6 +108,7 @@ cancelButton.addEventListener("click", () => {
   formContainer.classList.remove("medicine-management__container--active");
   appState.editState = null;
   confirmEditButton.textContent = "Submit";
+  Validation.validateForm();
   productTypeReset();
 });
 

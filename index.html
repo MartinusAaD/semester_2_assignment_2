@@ -37,6 +37,8 @@
           <input
             type="text"
             class="form__product-name-input"
+            id="product-name"
+            name="product-name"
             placeholder="Enter name of medicine"
             minlength="1"
             maxlength="50"
@@ -363,6 +365,7 @@
               <input
                 type="number"
                 class="product-type_pill-quantity-input"
+                id="pill-quantity"
                 placeholder="0"
                 min="1"
               />
@@ -379,6 +382,8 @@
           <input
             type="text"
             class="form__product-id-input"
+            id="id"
+            name="id"
             minlength="1"
             placeholder="Is generated or fetched based on the inserted data."
             value=""
@@ -394,7 +399,7 @@
           >
           <select
             name="manufacturer"
-            id="form__manufacturer"
+            id="manufacturer"
             class="form__manufacturer"
           >
             <option value="" class="form__manufacturer-option">
@@ -416,7 +421,12 @@
             title="Enter the products expiry date. This can be found on the product itself."
             >Expiration Date: *</label
           >
-          <input type="date" class="form__expiration-date-input" />
+          <input
+            type="date"
+            class="form__expiration-date-input"
+            id="expiry-date"
+            name="expiry-date"
+          />
 
           <!-- Quantity -->
           <label
@@ -428,9 +438,12 @@
           <input
             type="number"
             class="form__quantity-input"
+            id="quantity"
+            name="quantity"
             placeholder="0"
             min="1"
           />
+          <p class="form__validation-message"></p>
           <div class="medicine-management__form-buttons-container">
             <button
               type="submit"

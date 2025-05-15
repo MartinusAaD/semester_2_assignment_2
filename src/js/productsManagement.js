@@ -277,7 +277,6 @@ class ProductsManagement {
       default:
         break;
     }
-    console.log(newProduct);
     productsList.push(newProduct);
     localStorage.setItem("productsList", JSON.stringify(productsList));
     this.viewProducts();
