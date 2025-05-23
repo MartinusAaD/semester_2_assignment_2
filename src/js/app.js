@@ -15,6 +15,7 @@ const addProductButton = document.querySelector(".product-button-add");
 const formContainer = document.querySelector(".medicine-management__container");
 const productForm = document.querySelector(".medicine-management__form");
 const validationMessage = document.querySelector(".form__validation-message");
+const submitMessage = document.querySelector(".form_feedback-message");
 const confirmEditButton = document.querySelector(".form-button-submit");
 const cancelButton = document.querySelector(".form-button-cancel");
 
@@ -22,6 +23,10 @@ addProductButton.addEventListener("click", () => {
   formContainer.classList.add("medicine-management__container--active");
   validationMessage.style.display = "none";
 });
+
+const resetSubmitMessage = () => {
+  submitMessage.textContent = "";
+};
 
 productForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -79,6 +84,9 @@ productForm.addEventListener("submit", (e) => {
       pillShape.value,
       pillQuantity.value
     );
+
+    submitMessage.textContent = "Product has been successfully added!";
+    setTimeout(resetSubmitMessage, 3000);
   } else {
     ProductsManagement.updateProduct(
       productName.value.trim(),
@@ -97,6 +105,8 @@ productForm.addEventListener("submit", (e) => {
       pillShape.value,
       pillQuantity.value
     );
+    submitMessage.textContent = "Product has been successfully edited!";
+    setTimeout(resetSubmitMessage, 3000);
   }
   productForm.reset();
   confirmEditButton.textContent = "Submit";

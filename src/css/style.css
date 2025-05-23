@@ -19,26 +19,7 @@ main {
   padding: var(--spacing-large) var(--spacing-x-large);
 }
 
-.navbar {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: var(--spacing-medium) var(--spacing-large);
-  background-color: var(--color-background-dark);
-  color: var(--color-text-light);
-  gap: var(--spacing-large);
-}
 
-.navbar__header-container {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-medium);
-  flex-basis: 35%;
-  white-space: nowrap;
-}
-
-.navbar__header {
-}
 
 /* Form */
 .medicine-management__container {
@@ -124,6 +105,10 @@ select {
 .form__validation-message {
   color: rgb(255, 76, 76);
   display: none;
+}
+
+.form_feedback-message {
+  color: green;
 }
 
 /*  */
